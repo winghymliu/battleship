@@ -65,6 +65,12 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+	
+	app.get('/lobby', function(req, res){
+		res.render('lobby.ejs', {
+			user : req.user	
+		});
+	});
 };
 
 // route middleware to make sure
