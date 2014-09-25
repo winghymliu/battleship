@@ -32,7 +32,11 @@
 					<!-- Logo -->
 						<div id="logo">
 							<h1><a href="index.html">Battleship</a></h1>
-							<p>A free responsive site template by HTML5 UP</p>
+							<% if(user) { %>
+								<p><%= user.local.email %></p>
+							<% } else { %>
+								<p>Please log in</p>
+							<% } %>	
 						</div>
 					
 					<!-- Nav -->
@@ -59,7 +63,11 @@
 									</ul>
 								</li>
 								<li><a href="lobby.html">Lobby</a></li>
-								<li><%- link_to('Login', 'login') %></li>
+								<%if (user) { %>
+									<li><%- link_to('Logout', 'logout') %></li>
+								<% } else { %>
+									<li><%- link_to('Login', 'login') %></li>
+								<% } %>
 							</ul>
 						</nav>
 
