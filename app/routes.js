@@ -13,6 +13,14 @@ module.exports = function(app, passport) {
 		); // load the index.ejs file
 	});
 
+	app.get('/home', function(req, res) {
+	    res.render(
+	    	'index.ejs',
+	    	{
+	    		user : req.user	
+	    	}
+	    );
+	})
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
