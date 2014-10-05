@@ -20,7 +20,8 @@ module.exports = function(app, passport) {
 	    		user : req.user	
 	    	}
 	    );
-	})
+	});
+	
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
@@ -78,6 +79,15 @@ module.exports = function(app, passport) {
 		res.render('lobby.ejs', {
 			user : req.user	
 		});
+	});
+	
+	app.get('/play', function(req, res) {
+	    res.render(
+	    	'play.ejs',
+	    	{
+	    		user : req.user	
+	    	}
+	    );
 	});
 };
 
