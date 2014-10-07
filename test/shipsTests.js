@@ -1,5 +1,5 @@
 var assert = require("assert"); // node.js core module
-var expect = require('chai').expect
+var expect = require('chai').expect;
 var shipyard = require('../client/game/shipyard.js');
 
 describe('ships', function(){
