@@ -1,8 +1,33 @@
+var _ = require("underscore");
 var grid = {};
 var gridSize = 10;
 
-grid.updateOccupiedGrid = function(ships){
+
+function updateGridWithShip(ship, occupiedGrid){
+	var count = ship.length;
+	var curX = ship.x;
+	var curY = ship.y;
+	while(count > 0){
+	  occupiedGrid[curX][curY] = 1;
+	  
+	  if(ship.direction == "N"){
+		curY++;		
+	  } else if(ship.direction == "E"){
+	  	curX--;
+	  } else if (ship.direction == "S"){
+	  	curY--;
+	  } else if(ship.direction == "W") {
+	  	curX++;
+	  } else {
+	  	throw new Error("Uknown direction: " + ship.direction);
+	  }
+	  count--;
+	} ;
+	  
 	
+}
+
+grid.updateOccupiedGrid = function(ships){
 	if(ships == null || ships == undefined || ships.length == 0)
 		return null;
 	var occupiedGrid = [];
@@ -15,6 +40,10 @@ grid.updateOccupiedGrid = function(ships){
 			occupiedGrid[c][r] = 0;
 		}	
 	}
+	
+	_.each(ships, function(ship){
+		updateGridWithShip(ship, occupiedGrid);	
+	});
 	
 	return occupiedGrid;
 }
