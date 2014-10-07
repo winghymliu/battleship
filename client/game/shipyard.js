@@ -5,8 +5,10 @@ shipyard.createShips = function(){
 	var ships = [];
 	
 	var ship1 = {
-	  x : 10,
-	  y : 10
+	  x : 0,
+	  y : 0,
+	  length: 2,
+	  direction:"N"  
 	};
 	
 	ships[0] = ship1;
