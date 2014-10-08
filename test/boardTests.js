@@ -63,50 +63,24 @@ describe('grid', function() {
       }
     });
 
-    it('returns a correctly defined grid with a ship facing north', function() {
-      var ships = [];
-
-      var northShip = {
-        x: 2,
-        y: 5,
-        length: 2,
-        direction: "N"
-      };
-
-      ships.push(northShip);
-
-      var occupiedGrid = grid.updateOccupiedGrid(ships);
-
-      for (var c = 0; c < occupiedGrid.length; c++) {
-        for (var r = 0; r < occupiedGrid.length; r++) {
-          var expectedValue = 0;
-          if ((c == 2 && r == 5) || (c == 2 && r == 6)) {
-            expectedValue = 1;
-          }
-          assert.equal(occupiedGrid[c][r], expectedValue);
-        }
-      }
-    });
-
     it('returns a correctly defined grid with a ship facing east', function() {
       var ships = [];
 
-      var northShip = {
+      var eastShip = {
         x: 2,
         y: 5,
         length: 2,
         direction: "E"
       };
 
-      ships.push(northShip);
+      ships.push(eastShip);
 
       var occupiedGrid = grid.updateOccupiedGrid(ships);
 
       for (var c = 0; c < occupiedGrid.length; c++) {
         for (var r = 0; r < occupiedGrid.length; r++) {
           var expectedValue = 0;
-          if ((c == 2 && r == 5) 
-            ||(c == 1 && r == 5)) {
+          if ((c == 2 && r == 5) || (c == 1 && r == 5)) {
             expectedValue = 1;
           }
           assert.equal(occupiedGrid[c][r], expectedValue);
@@ -117,23 +91,21 @@ describe('grid', function() {
     it('returns a correctly defined grid with a ship facing south', function() {
       var ships = [];
 
-      var northShip = {
+      var southShip = {
         x: 5,
         y: 5,
         length: 3,
         direction: "S"
       };
 
-      ships.push(northShip);
+      ships.push(southShip);
 
       var occupiedGrid = grid.updateOccupiedGrid(ships);
 
       for (var c = 0; c < occupiedGrid.length; c++) {
         for (var r = 0; r < occupiedGrid.length; r++) {
           var expectedValue = 0;
-          if ((c == 5 && r == 5) 
-            ||(c == 5 && r == 4) 
-            ||(c == 5 && r == 3)) {
+          if ((c == 5 && r == 5) || (c == 5 && r == 4) || (c == 5 && r == 3)) {
             expectedValue = 1;
           }
           assert.equal(occupiedGrid[c][r], expectedValue);
@@ -144,7 +116,39 @@ describe('grid', function() {
     it('returns a correctly defined grid with a ship facing west', function() {
       var ships = [];
 
-      var northShip = {
+      var westShip = {
+        x: 3,
+        y: 6,
+        length: 4,
+        direction: "W"
+      };
+
+      ships.push(westShip);
+
+      var occupiedGrid = grid.updateOccupiedGrid(ships);
+
+      for (var c = 0; c < occupiedGrid.length; c++) {
+        for (var r = 0; r < occupiedGrid.length; r++) {
+          var expectedValue = 0;
+          if ((c == 3 && r == 6) || (c == 4 && r == 6) || (c == 5 && r == 6) || (c == 6 && r == 6)) {
+            expectedValue = 1;
+          }
+          assert.equal(occupiedGrid[c][r], expectedValue);
+        }
+      }
+    });
+
+    it('returns a correctly defined grid with two ships', function() {
+      var ships = [];
+
+       var northShip = {
+        x: 2,
+        y: 5,
+        length: 2,
+        direction: "N"
+      };
+
+      var westShip = {
         x: 3,
         y: 6,
         length: 4,
@@ -152,17 +156,18 @@ describe('grid', function() {
       };
 
       ships.push(northShip);
+      ships.push(westShip);
 
       var occupiedGrid = grid.updateOccupiedGrid(ships);
 
       for (var c = 0; c < occupiedGrid.length; c++) {
         for (var r = 0; r < occupiedGrid.length; r++) {
           var expectedValue = 0;
-          if ((c == 3 && r == 6) 
-            ||(c == 4 && r == 6)
-            ||(c == 5 && r == 6)
-            ||(c == 6 && r == 6)
-            ) {
+          //West
+          if ((c == 3 && r == 6) || (c == 4 && r == 6) || (c == 5 && r == 6) || (c == 6 && r == 6)) {
+            expectedValue = 1;
+          } //North
+          else if ((c == 2 && r == 5) || (c == 2 && r == 6)) {
             expectedValue = 1;
           }
           assert.equal(occupiedGrid[c][r], expectedValue);
