@@ -141,7 +141,7 @@ describe('grid', function() {
     it('returns a correctly defined grid with two ships', function() {
       var ships = [];
 
-       var northShip = {
+      var northShip = {
         x: 2,
         y: 5,
         length: 2,
@@ -173,6 +173,32 @@ describe('grid', function() {
           assert.equal(occupiedGrid[c][r], expectedValue);
         }
       }
+    });
+
+    it('throws an exception when two ships overlap', function() {
+      var ships = [];
+
+      var northShip = {
+        x: 2,
+        y: 5,
+        length: 2,
+        direction: "N"
+      };
+
+      var westShip = {
+        x: 1,
+        y: 6,
+        length: 4,
+        direction: "W"
+      };
+
+      ships.push(northShip);
+      ships.push(westShip);
+
+      assert.throws(function() {
+        grid.updateOccupiedGrid(ships)
+      }, Error, "Overlapping ships");
+
     });
   });
 });

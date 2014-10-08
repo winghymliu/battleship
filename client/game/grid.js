@@ -8,6 +8,9 @@ function updateGridWithShip(ship, occupiedGrid){
 	var curX = ship.x;
 	var curY = ship.y;
 	while(count > 0){
+	  if(occupiedGrid[curX][curY] == 1)	
+	  	throw new Error("Overlapping ships");
+		
 	  occupiedGrid[curX][curY] = 1;
 	  
 	  if(ship.direction == "N"){
