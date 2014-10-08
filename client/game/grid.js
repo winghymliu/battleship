@@ -2,12 +2,23 @@ var _ = require("underscore");
 var grid = {};
 var gridSize = 10;
 
+function isOutOfBounds(curX, curY){
+	if((curX < 0 || curX > gridSize -1)		 
+	   ||(curY < 0 || curY > gridSize -1)){
+		return true;  	
+	}
+	return false;
+}
 
 function updateGridWithShip(ship, occupiedGrid){
 	var count = ship.length;
 	var curX = ship.x;
 	var curY = ship.y;
 	while(count > 0){
+	  if(isOutOfBounds(curX, curY)){
+	  	throw new Error("Ship out of bounds");
+	  }
+		
 	  if(occupiedGrid[curX][curY] == 1)	
 	  	throw new Error("Overlapping ships");
 		

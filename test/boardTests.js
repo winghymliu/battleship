@@ -200,5 +200,58 @@ describe('grid', function() {
       }, Error, "Overlapping ships");
 
     });
+    
+      it('throws an exception when a ship goes off the grid on y axis', function() {
+      var ships = [];
+
+      var northShip = {
+        x: 0,
+        y: 0,
+        length: 2,
+        direction: "S"
+      };
+
+      var westShip = {
+        x: 1,
+        y: 6,
+        length: 4,
+        direction: "W"
+      };
+
+      ships.push(northShip);
+      ships.push(westShip);
+
+      assert.throws(function() {
+        grid.updateOccupiedGrid(ships)
+      }, Error, "Ship out of bounds");
+
+    });
+    
+    it('throws an exception when a ship goes off the grid on x axis', function() {
+      var ships = [];
+
+      var northShip = {
+        x: 0,
+        y: 0,
+        length: 2,
+        direction: "N"
+      };
+
+      var westShip = {
+        x: 9,
+        y: 9,
+        length: 4,
+        direction: "W"
+      };
+
+      ships.push(northShip);
+      ships.push(westShip);
+
+      assert.throws(function() {
+        grid.updateOccupiedGrid(ships)
+      }, Error, "Ship out of bounds");
+
+    });
+    
   });
 });
