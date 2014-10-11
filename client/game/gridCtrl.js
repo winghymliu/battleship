@@ -1,5 +1,11 @@
 app.controller('GridCtrl', ['$scope',
 	function($scope) {
+
+		$scope.name = "Ari";
+		$scope.sayHello = function() {
+			$scope.greeting = "Hello " + $scope.name;
+		}
+
 		$scope.sketch = function(sketch) {
 			var locked = false;
 
@@ -87,16 +93,16 @@ app.controller('GridCtrl', ['$scope',
 
 				if (locked) {
 					var newCoords = getDropCoords(sketch.mouseX, sketch.mouseY);
-					if(newCoords) {
+					if (newCoords) {
 						ships[0].c = newCoords.c;
-						ships[0].r = newCoords.r;	
+						ships[0].r = newCoords.r;
 						console.log("Ship c: " + ships[0].c);
 						console.log("Ship r: " + ships[0].r);
 					}
-					
+
 					locked = false;
 					lockedShip = null;
-					
+
 				}
 			}
 
@@ -106,8 +112,7 @@ app.controller('GridCtrl', ['$scope',
 
 			function getDropCoords(curX, curY) {
 
-				if (curX >= (cols * bs) || curY >= (rows * bs) 
-					|| curX < 0 || curY < 0) {
+				if (curX >= (cols * bs) || curY >= (rows * bs) || curX < 0 || curY < 0) {
 					console.log("Off the board");
 					return null;
 				}
