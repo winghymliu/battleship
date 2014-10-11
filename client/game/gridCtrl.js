@@ -1,20 +1,48 @@
 app.controller('GridCtrl', ['$scope',
 	function($scope) {
 
-		$scope.name = "Ari";
-		$scope.sayHello = function() {
-			$scope.greeting = "Hello " + $scope.name;
+		var cols = 5;
+		var rows = 5;
+
+		$scope.centerCoord = function(c, boxsize) {
+			return c - (boxsize / 2);
+		}
+
+		function getDropCoords(curX, curY, boxSize) {
+
+			if (curX >= (cols * boxSize) || curY >= (rows * boxSize) || curX < 0 || curY < 0) {
+				console.log("Off the board");
+				return null;
+			}
+
+			var c = Math.floor(curX / boxSize);
+			var r = Math.floor(curY / boxSize);
+			var coords = {};
+			coords.c = c;
+			coords.r = r;
+			return coords;
+		}
+
+		function isHover(ship, boxSize, curX, curY) {
+			var xUpper = (ship.c + 1) * boxSize;
+			var yUpper = (ship.r + 1) * boxSize;
+			var withinX = curX >= ship.c * boxSize && curX < xUpper;
+			var withinY = curY >= ship.r * boxSize && curY < yUpper;
+			if (withinX && withinY) {
+				console.log('hover over ' + ship.name);
+				return true;
+			}
+			return false;
 		}
 
 		$scope.sketch = function(sketch) {
 			var locked = false;
+			var boxSize = 20;
 
-			var cols = 5;
-			var rows = 5;
 			var unusedColor = 150;
 			var occupiedColor = sketch.color(252, 13, 0);
 			var selectedColor = 255;
-			var bs = 20;
+
 
 			var s1 = {
 				r: 1,
@@ -28,18 +56,6 @@ app.controller('GridCtrl', ['$scope',
 			sketch.setup = function() {
 				sketch.rectMode(sketch.CORNER);
 				sketch.size(200, 200);
-			}
-
-			function isHover(ship) {
-				var xUpper = (ship.c + 1) * bs;
-				var yUpper = (ship.r + 1) * bs;
-				var withinX = sketch.mouseX >= ship.c * bs && sketch.mouseX < xUpper;
-				var withinY = sketch.mouseY >= ship.r * bs && sketch.mouseY < yUpper;
-				if (withinX && withinY) {
-					console.log('hover over ' + ship.name);
-					return true;
-				}
-				return false;
 			}
 
 			sketch.draw = function() {
@@ -64,26 +80,22 @@ app.controller('GridCtrl', ['$scope',
 								sketch.fill(unusedColor);
 							}
 						}
-						var bx = startx + (bs * c);
-						var by = starty + (bs * r);
-						sketch.rect(bx, by, bs, bs);
+						var bx = startx + (boxSize * c);
+						var by = starty + (boxSize * r);
+						sketch.rect(bx, by, boxSize, boxSize);
 					}
 				}
 
 				if (locked) {
 					sketch.fill(occupiedColor);
-					sketch.rect(centerCoord(sketch.mouseX), centerCoord(sketch.mouseY), bs, bs);
+					sketch.rect($scope.centerCoord(sketch.mouseX, boxSize), $scope.centerCoord(sketch.mouseY, boxSize), boxSize, boxSize);
 				}
-			}
-
-			function centerCoord(m) {
-				return m - (bs / 2);
 			}
 
 			sketch.mousePressed = function() {
 
 				for (var i = 0; i < ships.length; i++) {
-					if (isHover(ships[i])) {
+					if (isHover(ships[i]), boxSize, sketch.mouseX, sketch.mouseY) {
 						locked = true;
 						lockedShip = ships[i].name;
 					}
@@ -92,7 +104,7 @@ app.controller('GridCtrl', ['$scope',
 			sketch.mouseReleased = function() {
 
 				if (locked) {
-					var newCoords = getDropCoords(sketch.mouseX, sketch.mouseY);
+					var newCoords = getDropCoords(sketch.mouseX, sketch.mouseY, boxSize);
 					if (newCoords) {
 						ships[0].c = newCoords.c;
 						ships[0].r = newCoords.r;
@@ -108,21 +120,6 @@ app.controller('GridCtrl', ['$scope',
 
 			sketch.mouseDragged = function() {
 
-			}
-
-			function getDropCoords(curX, curY) {
-
-				if (curX >= (cols * bs) || curY >= (rows * bs) || curX < 0 || curY < 0) {
-					console.log("Off the board");
-					return null;
-				}
-
-				var c = Math.floor(curX / bs);
-				var r = Math.floor(curY / bs);
-				var coords = {};
-				coords.c = c;
-				coords.r = r;
-				return coords;
 			}
 
 		}

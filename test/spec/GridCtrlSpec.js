@@ -14,11 +14,10 @@ describe('Unit: GridCtrl', function() {
     });
   }));
   
-  it('should create $scope.greeting when calling sayHello', 
+  it('should be able to return the central coordinates  20', 
     function() {
-      expect(scope.greeting).toBeUndefined();
-      scope.sayHello();
-      expect(scope.greeting).toEqual("Hello Ari");
+      var boxSize = 20;
+      expect(scope.centerCoord(25, boxSize)).toEqual(15);
   });
   
 });

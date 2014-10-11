@@ -13,7 +13,7 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'client/app.js',
       'client/game/gridCtrl.js',
-      'test/spec/main.js'
+      'test/spec/*.js'
     ],
 
     // list of files / patterns to exclude
