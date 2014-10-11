@@ -12,6 +12,7 @@ module.exports = function(config) {
       'node_modules/angular/lib/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'client/app.js',
+      'client/game/gridServices.js',
       'client/game/gridCtrl.js',
       'test/spec/*.js'
     ],

@@ -1,8 +1,13 @@
-app.controller('GridCtrl', ['$scope',
-	function($scope) {
+app.controller('GridCtrl', 
+	function($scope, gridServices) {
 
 		var cols = 5;
 		var rows = 5;
+
+		$scope.testHi = function(){
+			return "Hi";
+			//return gridServices.sayHello();
+		}
 
 		$scope.centerCoord = function(c, boxsize) {
 			return c - (boxsize / 2);
@@ -30,6 +35,7 @@ app.controller('GridCtrl', ['$scope',
 			var withinY = curY >= ship.r * boxSize && curY < yUpper;
 			if (withinX && withinY) {
 				console.log('hover over ' + ship.name);
+				
 				return true;
 			}
 			return false;
@@ -56,6 +62,7 @@ app.controller('GridCtrl', ['$scope',
 			sketch.setup = function() {
 				sketch.rectMode(sketch.CORNER);
 				sketch.size(200, 200);
+				console.log($scope.testHi());
 			}
 
 			sketch.draw = function() {
@@ -125,4 +132,4 @@ app.controller('GridCtrl', ['$scope',
 		}
 
 	}
-]);
+);
