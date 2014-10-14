@@ -1,9 +1,79 @@
 app.service('gridServices', function() {
   var gridServices = {};
-  
-  gridServices.sayHello = function(){
-    return "Hi";
+
+  var cols = 5;
+  var rows = 5;
+
+  gridServices.getCols = function() {
+    return cols;
   }
-  
+
+  gridServices.getRows = function() {
+    return rows;
+  }
+
+  gridServices.centerCoord = function(c, boxsize) {
+    return c - (boxsize / 2);
+  }
+
+  gridServices.getDropCoords = function(curX, curY, boxSize) {
+
+    if (curX >= (cols * boxSize) || curY >= (rows * boxSize) || curX < 0 || curY < 0) {
+      console.log("Off the board");
+      return null;
+    }
+
+    var c = Math.floor(curX / boxSize);
+    var r = Math.floor(curY / boxSize);
+    var coords = {};
+    coords.c = c;
+    coords.r = r;
+    return coords;
+  }
+
+  gridServices.isHover = function(ship, boxSize, curX, curY) {
+
+    var cAdjust = 0;
+    var rAdjust = 0;
+    var shipExtra = (ship.length - 1);
+    console.log(shipExtra);
+    if (ship.direction == "N") {
+      rAdjust = rAdjust + shipExtra;
+    }
+    else if (ship.direction == "E") {
+      cAdjust = cAdjust - shipExtra;
+    }
+    else if (ship.direction == "S") {
+      rAdjust = rAdjust - shipExtra;
+    }
+    else if (ship.direction == "W") {
+      cAdjust = cAdjust + shipExtra;
+    }
+    else {
+      throw new Error("Uknown direction: " + ship.direction);
+    }
+    
+    console.log("rAdjust" + rAdjust);
+    console.log("cAdjust" + cAdjust);
+    
+    var cUpper = (ship.c + 1 + cAdjust) * boxSize;
+    var rUpper = (ship.r + 1 + rAdjust) * boxSize;
+    var withinX = curX >= ship.c * boxSize && curX < cUpper;
+    var withinY = curY >= ship.r * boxSize && curY < rUpper;
+
+    console.log("xUpper " + cUpper);
+    console.log("yUpper " + rUpper);
+
+    console.log("WithinX " + withinX);
+    console.log("WithinY " + withinY);
+
+    if (withinX && withinY) {
+      console.log('hover over ' + ship.name);
+
+      return true;
+    }
+    return false;
+  }
+
   return gridServices;
-}); 
+});

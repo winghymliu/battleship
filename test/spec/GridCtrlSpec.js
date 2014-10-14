@@ -18,24 +18,4 @@ describe('Unit: GridCtrl', function() {
         s = _gridServices_;
       });
     });
-
-  it('should be able to return the central coordinates  20',
-    function() {
-      var boxSize = 20;
-      expect(scope.centerCoord(25, boxSize)).toEqual(15);
-    });
-
-  it('service should be able to hello',
-    function() {
-      
-      expect(s.sayHello()).toEqual("Hi");
-    });
-
-  it('should be able to hello',
-    function() {
-      var msg = scope.testHi();
-
-      expect(msg).toEqual("Hi");
-    });
-
 });
