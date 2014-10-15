@@ -1,6 +1,9 @@
 app.controller('GridCtrl', 
 	function($scope, gridServices) {
-
+	
+	var rows = gridServices.getRows();
+	var cols = gridServices.getCols();
+		
 		$scope.sketch = function(sketch) {
 			var locked = false;
 			var boxSize = 20;

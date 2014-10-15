@@ -11,6 +11,14 @@ describe('Unit: GridServicesSpec', function() {
         service = _gridServices_;
       });
     });
+    
+  describe('Function:get rows and cols', function() {
+    it('should be able to return the correct rows and cols',
+      function() {
+        expect(service.getRows()).toBe(5);
+        expect(service.getCols()).toBe(5);
+      });
+  });  
 
   describe('Function:centerCoord', function() {
     it('should be able to return the central coordinates  20',
