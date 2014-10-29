@@ -11,9 +11,12 @@ function isOutOfBounds(curX, curY){
 }
 
 function updateGridWithShip(ship, occupiedGrid){
+	console.log("count " +  ship.length);
+	console.log("ship c1 " +  ship.c1);
+	console.log("ship r1" +  ship.r1);
 	var count = ship.length;
-	var curX = ship.c;
-	var curY = ship.r;
+	var curX = ship.c1;
+	var curY = ship.r1;
 	while(count > 0){
 	  if(isOutOfBounds(curX, curY)){
 	  	throw new Error("Ship out of bounds");

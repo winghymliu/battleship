@@ -6,8 +6,10 @@ shipyard.createShips = function(){
 	
 	var ship1 = {
 		name: "Ship1",
-	  c : 0,
-	  r : 0,
+	  c1 : 0,
+	  r1 : 0,
+	  c2 : 1,
+	  r2 : 2,
 	  length: 2,
 	  direction:"N"  
 	};

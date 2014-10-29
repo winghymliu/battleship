@@ -32,47 +32,75 @@ app.service('gridServices', function() {
   }
 
   gridServices.isHover = function(ship, boxSize, curX, curY) {
+    /*
+        var cAdjust = 1;
+        var rAdjust = 1;
+        var shipExtra = (ship.length - 1);
+        console.log(shipExtra);
+        if (ship.direction == "N") {
+          rAdjust = rAdjust + shipExtra;
+        }
+        else if (ship.direction == "E") {
+          cAdjust = cAdjust - shipExtra;
+        }
+        else if (ship.direction == "S") {
+          rAdjust = rAdjust - shipExtra;
+        }
+        else if (ship.direction == "W") {
+          cAdjust = cAdjust + shipExtra;
+        }
+        else {
+          throw new Error("Uknown direction: " + ship.direction);
+        }
+        
+        console.log("rAdjust" + rAdjust);
+        console.log("cAdjust" + cAdjust);
+        
+        var cUpper = (ship.c + cAdjust) * boxSize;
+        var rUpper = (ship.r + rAdjust) * boxSize;
+        var cLower = ship.c * boxSize;
+        var rLower = ship.r * boxSize;
+        
+        var withinX = curX >= rLower && curX < cUpper;
+        var withinY = curY >= rLower && curY < rUpper;
 
-    var cAdjust = 0;
-    var rAdjust = 0;
-    var shipExtra = (ship.length - 1);
-    console.log(shipExtra);
-    if (ship.direction == "N") {
-      rAdjust = rAdjust + shipExtra;
-    }
-    else if (ship.direction == "E") {
-      cAdjust = cAdjust - shipExtra;
-    }
-    else if (ship.direction == "S") {
-      rAdjust = rAdjust - shipExtra;
-    }
-    else if (ship.direction == "W") {
-      cAdjust = cAdjust + shipExtra;
-    }
-    else {
-      throw new Error("Uknown direction: " + ship.direction);
-    }
-    
-    console.log("rAdjust" + rAdjust);
-    console.log("cAdjust" + cAdjust);
-    
-    var cUpper = (ship.c + 1 + cAdjust) * boxSize;
-    var rUpper = (ship.r + 1 + rAdjust) * boxSize;
-    var withinX = curX >= ship.c * boxSize && curX < cUpper;
-    var withinY = curY >= ship.r * boxSize && curY < rUpper;
+        console.log("cLower " + cLower);
+        console.log("rLower " + rLower);
 
-    console.log("xUpper " + cUpper);
-    console.log("yUpper " + rUpper);
+        console.log("cUpper " + cUpper);
+        console.log("rUpper " + rUpper);
+
+        console.log("WithinX " + withinX);
+        console.log("WithinY " + withinY);
+
+        if (withinX && withinY) {
+          console.log('hover over ' + ship.name);
+
+          return true;
+        }
+        */
+
+    var cLower = ship.c1 * boxSize;
+    var cUpper = ship.c2 * boxSize;
+    var rLower = ship.r1 * boxSize;
+    var rUpper = ship.r2 * boxSize;
+
+
+    var withinX = curX >= cLower && curX < cUpper;
+    var withinY = curY >= rLower && curY < rUpper;
+
+
+    console.log("cLower " + cLower);
+    console.log("rLower " + rLower);
+
+    console.log("cUpper " + cUpper);
+    console.log("rUpper " + rUpper);
 
     console.log("WithinX " + withinX);
     console.log("WithinY " + withinY);
 
-    if (withinX && withinY) {
-      console.log('hover over ' + ship.name);
+    return withinX && withinY;
 
-      return true;
-    }
-    return false;
   }
 
   return gridServices;

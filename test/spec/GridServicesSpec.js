@@ -75,13 +75,15 @@ describe('Unit: GridServicesSpec', function() {
   });
 
   describe('Function:isHover', function() {
-    it('should return true when over a ship',
+    it('should return true when over a north facing ship',
       function() {
         var boxSize = 20;
         var ship = {
           name: "ship1",
-          c: 0,
-          r: 0,
+          c1: 0,
+          r1: 0,
+          c2: 1,
+          r2: 2,
           length: 2,
           direction: "N"
         };
@@ -89,6 +91,65 @@ describe('Unit: GridServicesSpec', function() {
         expect(service.isHover(ship, boxSize, 5, 5)).toBe(true);
         expect(service.isHover(ship, boxSize, 5, 35)).toBe(true);
       });
+      
+       it('should return true when over a south facing ship',
+      function() {
+        var boxSize = 20;
+        var ship = {
+          name: "ship1",
+          c1: 4,
+          r1: 2,
+          c2: 5,
+          r2: 4,
+          length: 2,
+          direction: "S"
+        };
+        
+        expect(service.isHover(ship, boxSize, 80, 40)).toBe(true);
+        expect(service.isHover(ship, boxSize, 99, 79)).toBe(true);
+        
+        expect(service.isHover(ship, boxSize, 95, 90)).toBe(false);
+        expect(service.isHover(ship, boxSize, 100, 79)).toBe(false);
+        expect(service.isHover(ship, boxSize, 99, 80)).toBe(false);
+      });
+      
+        it('should return true when over a east facing ship',
+      function() {
+        var boxSize = 10;
+        var ship = {
+          name: "ship1",
+          c1: 3,
+          r1: 2,
+          c2: 5,
+          r2: 3,
+          length: 2,
+          direction: "E"
+        };
+        
+        expect(service.isHover(ship, boxSize, 30, 25)).toBe(true);
+        expect(service.isHover(ship, boxSize, 49, 29)).toBe(true);
+        expect(service.isHover(ship, boxSize, 50, 29)).toBe(false);
+      });
+      
+        it('should return true when over a west facing ship',
+      function() {
+        var boxSize = 10;
+        var ship = {
+          name: "ship1",
+          c1: 2,
+          r1: 3,
+          c2: 3,
+          r2: 4,
+          length: 1,
+          direction: "W"
+        };
+        
+        expect(service.isHover(ship, boxSize, 20, 30)).toBe(true);
+        expect(service.isHover(ship, boxSize, 29, 39)).toBe(true);
+        expect(service.isHover(ship, boxSize, 30, 40)).toBe(false);
+        
+      });
+      
   });
 
 });

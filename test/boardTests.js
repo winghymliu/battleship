@@ -42,8 +42,10 @@ describe('grid', function() {
       var ships = [];
 
       var northShip = {
-        c: 2,
-        r: 5,
+        c1: 2,
+        r1: 5,
+        c2: 3,
+        r2: 7,
         length: 2,
         direction: "N"
       };
@@ -67,8 +69,10 @@ describe('grid', function() {
       var ships = [];
 
       var eastShip = {
-        c: 2,
-        r: 5,
+        c1: 2,
+        r1: 5,
+        c2: 4,
+        r2: 6,
         length: 2,
         direction: "E"
       };
@@ -92,8 +96,10 @@ describe('grid', function() {
       var ships = [];
 
       var southShip = {
-        c: 5,
-        r: 5,
+        c1: 5,
+        r1: 5,
+        c2: 6,
+        r2: 8,
         length: 3,
         direction: "S"
       };
@@ -117,8 +123,10 @@ describe('grid', function() {
       var ships = [];
 
       var westShip = {
-        c: 3,
-        r: 6,
+        c1: 3,
+        r1: 6,
+        c2: 3,
+        r2: 6,
         length: 4,
         direction: "W"
       };
@@ -142,15 +150,19 @@ describe('grid', function() {
       var ships = [];
 
       var northShip = {
-        c: 2,
-        r: 5,
+        c1: 2,
+        r1: 5,
+        c2: 2,
+        r2: 6,
         length: 2,
         direction: "N"
       };
 
       var westShip = {
-        c: 3,
-        r: 6,
+        c1: 3,
+        r1: 6,
+        c2: 6,
+        r2: 6,
         length: 4,
         direction: "W"
       };
@@ -179,15 +191,19 @@ describe('grid', function() {
       var ships = [];
 
       var northShip = {
-        c: 2,
-        r: 5,
+        c1: 2,
+        r1: 5,
+        c2: 2,
+        r2: 6,
         length: 2,
         direction: "N"
       };
 
       var westShip = {
-        c: 1,
-        r: 6,
+        c1: 1,
+        r1: 6,
+        c2: 4,
+        r2: 6,
         length: 4,
         direction: "W"
       };
@@ -205,15 +221,19 @@ describe('grid', function() {
       var ships = [];
 
       var northShip = {
-        c: 0,
-        r: 0,
+        c1: 0,
+        r1: 0,
+        c2: 0,
+        r2: -1,
         length: 2,
         direction: "S"
       };
 
       var westShip = {
-        c: 1,
-        r: 6,
+        c1: 1,
+        r1: 6,
+        c2: 4,
+        r2: 6,
         length: 4,
         direction: "W"
       };
@@ -231,15 +251,19 @@ describe('grid', function() {
       var ships = [];
 
       var northShip = {
-        c: 0,
-        r: 0,
+        c1: 0,
+        r1: 0,
+        c2: 0,
+        r2: 1,
         length: 2,
         direction: "N"
       };
 
       var westShip = {
-        c: 9,
-        r: 9,
+        c1: 9,
+        r1: 9,
+        c2: 12,
+        r2: 9,
         length: 4,
         direction: "W"
       };
