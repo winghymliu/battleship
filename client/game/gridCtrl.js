@@ -25,7 +25,6 @@ app.controller('GridCtrl',
 			sketch.setup = function() {
 				sketch.rectMode(sketch.CORNER);
 				sketch.size(200, 200);
-				console.log($scope.testHi());
 			}
 
 			sketch.draw = function() {
